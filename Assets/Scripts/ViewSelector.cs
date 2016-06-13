@@ -41,7 +41,7 @@ public class ViewSelector : MonoBehaviour
         _2sLight.intensity = s2 * 2.0f;
 
     }
-
+    //                            1s 2s 2p 
     public void do_all()     {_do(X, X, X);}
     public void do_nucleus() {_do(O, O, O);}
     public void do_1s()      {_do(X, O, O);} 
