@@ -3,20 +3,19 @@ using System.Collections;
 
 public class ArcBallController : MonoBehaviour 
 {
-
     public float damping = 0.999f;
     public float speed = 5f;
 
-    private Vector3 vDown;
-    private Vector3 vDrag;
-    private bool dragging = false;
-    private float angularVelocity;
-    private Vector3 rotationAxis;
+    private Vector3 down;
+    private Vector3 drag;
+    private bool    dragging = false;
+    private float   velocity;
+    private Vector3 axis;
 
     void Start()
     {
-        angularVelocity = 0;
-        rotationAxis = Vector3.zero;
+        velocity = 0;
+        axis = Vector3.zero;
     }
 
     void Update()
@@ -30,28 +29,27 @@ public class ArcBallController : MonoBehaviour
             {
                 if(!dragging )
                 {
-                    vDown = hit.point - transform.position;
+                    down = hit.point - transform.position;
                     dragging = true;
                 }
                 else
                 {
-                    vDrag = hit.point - transform.position;
-
-                    rotationAxis = Vector3.Cross( vDown, vDrag );
-                    angularVelocity = Vector3.Angle(vDown, vDrag) * speed;
+                    drag = hit.point - transform.position;
+                    axis = Vector3.Cross(down, drag);
+                    velocity = Vector3.Angle(down, drag) * speed;
                 }
             }
             else
                 dragging = false;
         }
 
-        if( Input.GetMouseButtonUp(0) )
+        if(Input.GetMouseButtonUp(0))
             dragging = false;
 
-        if( angularVelocity > 0 )
+        if( velocity > 0 )
         {
-            transform.RotateAround(transform.position, rotationAxis, angularVelocity * Time.deltaTime );
-            angularVelocity = (angularVelocity > 0.01f) ? angularVelocity * damping : 0;
+            transform.RotateAround(transform.position, axis, velocity * Time.deltaTime );
+            velocity = (velocity > 0.01f) ? velocity * damping : 0;
         }
     }
 }
