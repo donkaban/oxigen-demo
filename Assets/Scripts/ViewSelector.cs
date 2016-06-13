@@ -37,8 +37,8 @@ public class ViewSelector : MonoBehaviour
         c2.a = s2; _2sMat.SetColor("_Color",c2);
         c3.a = p2; _2pMat.SetColor("_Color",c3);
 
-        _1sLight.intensity = s1 * 2.0f;
-        _2sLight.intensity = s2 * 2.0f;
+        _1sLight.intensity = s1 * 1.5f;
+        _2sLight.intensity = s2 * 1.5f;
 
     }
     //                            1s 2s 2p 
