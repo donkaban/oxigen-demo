@@ -9,7 +9,6 @@ Properties
 	{
 			GLSLPROGRAM
 
-			uniform sampler2D _Texture;
 			uniform vec4      _Color;
 			uniform vec4      _Time;  
 
@@ -26,12 +25,11 @@ Properties
 		#ifdef FRAGMENT
 
 		varying vec2 uv; 
-	    
-		void main( void ) 
-		{
+	    void main()
+	    {
 
-			gl_FragColor = vec4(0,0,0,1);
-		}
+   			gl_FragColor = _Color;
+    	}
 
 		#endif 
 		ENDGLSL 
